@@ -20,28 +20,30 @@ exports.add_patient = function (patient, callback) {
     connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
-        coll.insertOne(patient, (err, result) => {
+        coll.insertOne(patient, (err, item) => {
             if (err) throw err;
-            callback(result);
+            callback(item);
         })
     });
 };
 
-exports.update_patient = function (patient) {
+exports.update_patient = function (id, patient, callback) {
     connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
-        let new_values = {$set: {stats: stats}};
-        coll.updateOne({id: patient.id}, patient, function (err, item) {
+        coll.updateOne({_id: ObjectId(id)}, {$set : patient}, (err, item) => {
+            if (err) throw err;
+            callback(item);
         });
     });
 };
 
-exports.list_all_patients = function (callback) {
+exports.list_all_patients = function (highRisk, inactive, minAge, maxAge, callback) {
     connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
-        coll.find().toArray(function (err, items) {
+        // TODO @Simon: add inactive & highrisk flags
+        coll.find({age: {$gt: minAge === undefined ? 0 : minAge, $lt: maxAge === undefined ? Number.MAX_VALUE : maxAge}}).toArray(function (err, items) {
             return callback(items);
         });
     });

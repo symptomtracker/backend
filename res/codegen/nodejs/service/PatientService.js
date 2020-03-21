@@ -9,12 +9,14 @@ let database = require('../database');
  * returns PatientModel
  **/
 exports.addNewPatient = function(body, invitationCode) {
+  body.linkedCode = invitationCode;
+  body.symptomJourney = [];
   return new Promise(function(resolve, reject) {
     database.add_patient(body, function(result) {
       resolve(result.ops[0]);
     });
   });
-}
+};
 
 
 /**
@@ -24,13 +26,12 @@ exports.addNewPatient = function(body, invitationCode) {
  * returns PatientModel
  **/
 exports.getPatient = function(_id) {
-  console.log(_id);
   return new Promise(function(resolve, reject) {
     database.find_patient_by_id(_id, function(result) {
       resolve(result);
     });
   });
-}
+};
 
 
 /**
@@ -40,44 +41,15 @@ exports.getPatient = function(_id) {
  * body PatientModel Representation of the current patient
  * returns PatientModel
  **/
-exports.patchPatient = function(_id,body) {
+exports.patchPatient = function(_id, body) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "linkedCode" : "linkedCode",
-  "gender" : "gender",
-  "relatedAttributes" : [ {
-    "@Type" : "@Type",
-    "@Value" : "@Value"
-  }, {
-    "@Type" : "@Type",
-    "@Value" : "@Value"
-  } ],
-  "city" : "city",
-  "symptomJourney" : [ {
-    "description'" : "description'",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "@Category" : "@Category",
-    "comment" : "comment",
-    "symptomSeverity" : "symptomSeverity"
-  }, {
-    "description'" : "description'",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "@Category" : "@Category",
-    "comment" : "comment",
-    "symptomSeverity" : "symptomSeverity"
-  } ],
-  "name" : "name",
-  "id" : 0,
-  "age" : 6
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    delete body._id; // We have to remove the id during the update as Mongo won't allow us to update the id
+    database.update_patient(_id, body, function(result) {
+      body._id = _id; // We re-add the id so the client can use it
+      resolve(body)
+    });
   });
-}
+};
 
 
 /**
@@ -89,69 +61,11 @@ exports.patchPatient = function(_id,body) {
  * maxAge Long maximum age of patients (optional)
  * returns List
  **/
-exports.queryPatients = function(highRisk,inactive,minAge,maxAge) {
+exports.queryPatients = function(highRisk, inactive, minAge, maxAge) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "linkedCode" : "linkedCode",
-  "gender" : "gender",
-  "relatedAttributes" : [ {
-    "@Type" : "@Type",
-    "@Value" : "@Value"
-  }, {
-    "@Type" : "@Type",
-    "@Value" : "@Value"
-  } ],
-  "city" : "city",
-  "symptomJourney" : [ {
-    "description'" : "description'",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "@Category" : "@Category",
-    "comment" : "comment",
-    "symptomSeverity" : "symptomSeverity"
-  }, {
-    "description'" : "description'",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "@Category" : "@Category",
-    "comment" : "comment",
-    "symptomSeverity" : "symptomSeverity"
-  } ],
-  "name" : "name",
-  "id" : 0,
-  "age" : 6
-}, {
-  "linkedCode" : "linkedCode",
-  "gender" : "gender",
-  "relatedAttributes" : [ {
-    "@Type" : "@Type",
-    "@Value" : "@Value"
-  }, {
-    "@Type" : "@Type",
-    "@Value" : "@Value"
-  } ],
-  "city" : "city",
-  "symptomJourney" : [ {
-    "description'" : "description'",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "@Category" : "@Category",
-    "comment" : "comment",
-    "symptomSeverity" : "symptomSeverity"
-  }, {
-    "description'" : "description'",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "@Category" : "@Category",
-    "comment" : "comment",
-    "symptomSeverity" : "symptomSeverity"
-  } ],
-  "name" : "name",
-  "id" : 0,
-  "age" : 6
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    database.list_all_patients(highRisk, inactive, minAge, maxAge, function(result) {
+      resolve(result);
+    });
   });
-}
+};
 
