@@ -4,11 +4,11 @@
 /**
  * Add a new
  *
- * patientId Long ID patient
+ * _id Long ID patient
  * body List Representation of the current patient
  * no response value expected for this operation
  **/
-exports.addNewSymptoms = function(patientId,body) {
+exports.addNewSymptoms = function(_id,body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -18,10 +18,10 @@ exports.addNewSymptoms = function(patientId,body) {
 /**
  * Get Symptoms
  *
- * patientId Long ID patient
+ * _id Long ID patient
  * returns List
  **/
-exports.getAllSymptoms = function(patientId) {
+exports.getAllSymptoms = function(_id) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {

@@ -16,8 +16,8 @@ module.exports.addNewPatient = function addNewPatient (req, res, next) {
 };
 
 module.exports.getPatient = function getPatient (req, res, next) {
-  var patientId = req.swagger.params['patientId'].value;
-  Patient.getPatient(patientId)
+  var _id = req.swagger.params['_id'].value;
+  Patient.getPatient(_id)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -27,9 +27,9 @@ module.exports.getPatient = function getPatient (req, res, next) {
 };
 
 module.exports.patchPatient = function patchPatient (req, res, next) {
-  var patientId = req.swagger.params['patientId'].value;
+  var _id = req.swagger.params['_id'].value;
   var body = req.swagger.params['body'].value;
-  Patient.patchPatient(patientId,body)
+  Patient.patchPatient(_id,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })

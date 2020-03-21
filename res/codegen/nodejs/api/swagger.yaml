@@ -86,7 +86,7 @@ paths:
           schema:
             $ref: "#/definitions/PatientModel"
       x-swagger-router-controller: "Patient"
-  /patient/{patientId}:
+  /patient/{_id}:
     get:
       tags:
       - "patient"
@@ -97,12 +97,12 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "patientId"
+      - name: "_id"
         in: "path"
         description: "Id of the Patient"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "string"
       responses:
         "200":
           description: "successful operation"
@@ -119,7 +119,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "patientId"
+      - name: "_id"
         in: "path"
         description: "Id of the Patient"
         required: true
@@ -137,7 +137,7 @@ paths:
           schema:
             $ref: "#/definitions/PatientModel"
       x-swagger-router-controller: "Patient"
-  /patient/{patientId}/symptom:
+  /patient/{_id}/symptom:
     get:
       tags:
       - "symptoms"
@@ -148,7 +148,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "patientId"
+      - name: "_id"
         in: "path"
         description: "ID patient"
         required: true
@@ -172,7 +172,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "patientId"
+      - name: "_id"
         in: "path"
         description: "ID patient"
         required: true
@@ -261,7 +261,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "patientIds"
+      - name: "_ids"
         in: "query"
         description: "list of patient ids"
         required: true
@@ -302,9 +302,9 @@ definitions:
   PatientModel:
     type: "object"
     properties:
-      id:
-        type: "integer"
-        format: "int64"
+      _id:
+        type: "string"
+        format: "string"
       linkedCode:
         type: "string"
         format: "string"

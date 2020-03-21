@@ -94,7 +94,7 @@
         }
       }
     },
-    "/patient/{patientId}" : {
+    "/patient/{_id}" : {
       "get" : {
         "tags" : [ "patient" ],
         "summary" : "Get a corresponding patient",
@@ -103,7 +103,7 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "path",
-          "name" : "patientId",
+          "name" : "_id",
           "description" : "Id of the Patient",
           "required" : true,
           "type" : "integer",
@@ -126,7 +126,7 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "path",
-          "name" : "patientId",
+          "name" : "_id",
           "description" : "Id of the Patient",
           "required" : true,
           "type" : "integer",
@@ -150,7 +150,7 @@
         }
       }
     },
-    "/patient/{patientId}/symptom" : {
+    "/patient/{_id}/symptom" : {
       "put" : {
         "tags" : [ "symptoms" ],
         "summary" : "Add a new",
@@ -159,7 +159,7 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "path",
-          "name" : "patientId",
+          "name" : "_id",
           "description" : "ID patient",
           "required" : true,
           "type" : "integer",
@@ -190,7 +190,7 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "path",
-          "name" : "patientId",
+          "name" : "_id",
           "description" : "ID patient",
           "required" : true,
           "type" : "integer",
@@ -282,7 +282,7 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "query",
-          "name" : "patientIds",
+          "name" : "_ids",
           "description" : "list of patient ids",
           "required" : true,
           "type" : "array",
@@ -320,7 +320,7 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "query",
-          "name" : "patientIds",
+          "name" : "_ids",
           "description" : "list of patient ids",
           "required" : true,
           "type" : "array",

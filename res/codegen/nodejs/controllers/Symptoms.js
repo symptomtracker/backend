@@ -4,9 +4,9 @@ var utils = require('../utils/writer.js');
 var Symptoms = require('../service/SymptomsService');
 
 module.exports.addNewSymptoms = function addNewSymptoms (req, res, next) {
-  var patientId = req.swagger.params['patientId'].value;
+  var _id = req.swagger.params['_id'].value;
   var body = req.swagger.params['body'].value;
-  Symptoms.addNewSymptoms(patientId,body)
+  Symptoms.addNewSymptoms(_id,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -16,8 +16,8 @@ module.exports.addNewSymptoms = function addNewSymptoms (req, res, next) {
 };
 
 module.exports.getAllSymptoms = function getAllSymptoms (req, res, next) {
-  var patientId = req.swagger.params['patientId'].value;
-  Symptoms.getAllSymptoms(patientId)
+  var _id = req.swagger.params['_id'].value;
+  Symptoms.getAllSymptoms(_id)
     .then(function (response) {
       utils.writeJson(res, response);
     })

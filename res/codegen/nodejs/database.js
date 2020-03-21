@@ -1,4 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId;
+
 const uri = "mongodb://localhost:27017";
 const client = new MongoClient(uri);
 const connection = client.connect();
@@ -8,18 +10,19 @@ exports.find_patient_by_id = function (id, callback) {
     connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
-        coll.findOne({id: id}, function (err, item) {
+        coll.findOne({_id: ObjectId(id)}, function (err, item) {
             callback(item);
         });
     });
 };
 
-exports.add_patient = function (patient) {
+exports.add_patient = function (patient, callback) {
     connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
         coll.insertOne(patient, (err, result) => {
-            if (err) throw err
+            if (err) throw err;
+            callback(result);
         })
     });
 };

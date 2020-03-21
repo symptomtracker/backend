@@ -4,8 +4,8 @@ var utils = require('../utils/writer.js');
 var Message = require('../service/MessageService');
 
 module.exports.messagePatients = function messagePatients (req, res, next) {
-  var patientIds = req.swagger.params['patientIds'].value;
-  Message.messagePatients(patientIds)
+  var _ids = req.swagger.params['_ids'].value;
+  Message.messagePatients(_ids)
     .then(function (response) {
       utils.writeJson(res, response);
     })

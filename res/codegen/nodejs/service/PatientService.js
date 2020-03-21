@@ -8,43 +8,11 @@ let database = require('../database');
  * invitationCode Integer Invitation Code of the Health Department (optional)
  * returns PatientModel
  **/
-exports.addNewPatient = function(body,invitationCode) {
-  database.add_patient(body);
+exports.addNewPatient = function(body, invitationCode) {
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "linkedCode" : "linkedCode",
-  "gender" : "gender",
-  "relatedAttributes" : [ {
-    "@Type" : "@Type",
-    "@Value" : "@Value"
-  }, {
-    "@Type" : "@Type",
-    "@Value" : "@Value"
-  } ],
-  "city" : "city",
-  "symptomJourney" : [ {
-    "description'" : "description'",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "@Category" : "@Category",
-    "comment" : "comment",
-    "symptomSeverity" : "symptomSeverity"
-  }, {
-    "description'" : "description'",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "@Category" : "@Category",
-    "comment" : "comment",
-    "symptomSeverity" : "symptomSeverity"
-  } ],
-  "name" : "name",
-  "id" : 0,
-  "age" : 6
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    database.add_patient(body, function(result) {
+      resolve(result.ops[0]);
+    });
   });
 }
 
@@ -52,45 +20,15 @@ exports.addNewPatient = function(body,invitationCode) {
 /**
  * Get a corresponding patient
  *
- * patientId Long Id of the Patient
+ * _id Long Id of the Patient
  * returns PatientModel
  **/
-exports.getPatient = function(patientId) {
+exports.getPatient = function(_id) {
+  console.log(_id);
   return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "linkedCode" : "linkedCode",
-  "gender" : "gender",
-  "relatedAttributes" : [ {
-    "@Type" : "@Type",
-    "@Value" : "@Value"
-  }, {
-    "@Type" : "@Type",
-    "@Value" : "@Value"
-  } ],
-  "city" : "city",
-  "symptomJourney" : [ {
-    "description'" : "description'",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "@Category" : "@Category",
-    "comment" : "comment",
-    "symptomSeverity" : "symptomSeverity"
-  }, {
-    "description'" : "description'",
-    "createdAt" : "2000-01-23T04:56:07.000+00:00",
-    "@Category" : "@Category",
-    "comment" : "comment",
-    "symptomSeverity" : "symptomSeverity"
-  } ],
-  "name" : "name",
-  "id" : 0,
-  "age" : 6
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    database.find_patient_by_id(_id, function(result) {
+      resolve(result);
+    });
   });
 }
 
@@ -98,11 +36,11 @@ exports.getPatient = function(patientId) {
 /**
  * Patch a current Patient
  *
- * patientId Long Id of the Patient
+ * _id Long Id of the Patient
  * body PatientModel Representation of the current patient
  * returns PatientModel
  **/
-exports.patchPatient = function(patientId,body) {
+exports.patchPatient = function(_id,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
