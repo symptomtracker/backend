@@ -1,5 +1,5 @@
 'use strict';
-
+let database = require('../database');
 
 /**
  * Create new patient
@@ -9,6 +9,7 @@
  * returns PatientModel
  **/
 exports.addNewPatient = function(body,invitationCode) {
+  database.add_patient(body);
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
