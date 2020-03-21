@@ -296,6 +296,44 @@
           }
         }
       }
+    },
+    "/report" : {
+      "get" : {
+        "tags" : [ "report" ],
+        "summary" : "generate report",
+        "operationId" : "getReport",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          }
+        }
+      }
+    },
+    "/messagePatients" : {
+      "post" : {
+        "tags" : [ "message" ],
+        "summary" : "send email to list of patients specified by list of id",
+        "operationId" : "messagePatients",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "patientIds",
+          "description" : "list of patient ids",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "sending has been successful"
+          }
+        }
+      }
     }
   },
   "definitions" : {
