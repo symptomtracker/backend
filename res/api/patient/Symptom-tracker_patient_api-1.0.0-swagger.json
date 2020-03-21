@@ -7,7 +7,7 @@
   },
   "tags" : [ {
     "name" : "patient",
-    "description" : "Everything regarding a pathient"
+    "description" : "Everything regarding a patient"
   }, {
     "name" : "symptoms",
     "description" : "Everything regarding symptoms"
@@ -230,7 +230,7 @@
       },
       "put" : {
         "tags" : [ "questionaire" ],
-        "summary" : "Add a new catalogue questsion",
+        "summary" : "Add  new catalogue questions",
         "operationId" : "putCatalogueQuestion",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
