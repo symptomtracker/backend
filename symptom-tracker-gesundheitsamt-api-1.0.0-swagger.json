@@ -1,0 +1,198 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is the Patient's Client API for the Symptom Tracker\n",
+    "version" : "1.0.0",
+    "title" : "Symptom Tracker Patient API"
+  },
+  "tags" : [ {
+    "name" : "patient",
+    "description" : "Everything regarding a pathient"
+  }, {
+    "name" : "symptoms",
+    "description" : "Everything regarding symptoms"
+  } ],
+  "paths" : {
+    "/patient" : {
+      "post" : {
+        "tags" : [ "patient" ],
+        "summary" : "Create new patient",
+        "operationId" : "addNewPatient",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "get" : {
+        "tags" : [ "patient" ],
+        "summary" : "Get a filtered list of patients",
+        "operationId" : "queryPatients",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "highRisk",
+          "description" : "whether the Patient is at Risk",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "in" : "query",
+          "name" : "inactive",
+          "description" : "whether the Patient has been inactive for more than x hours",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "minAge",
+          "description" : "minimum age of patients",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "maxAge",
+          "description" : "maximum age of patients",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          }
+        }
+      }
+    },
+    "/patient/{patientId}" : {
+      "get" : {
+        "tags" : [ "patient" ],
+        "summary" : "Get a corresponding patient",
+        "operationId" : "getPatient",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "patientId",
+          "description" : "Id of the Patient",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          }
+        }
+      }
+    },
+    "/patient/{patientId}/symptom" : {
+      "post" : {
+        "tags" : [ "symptoms" ],
+        "summary" : "Add a new",
+        "operationId" : "addNewSymptoms",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "patientId",
+          "description" : "ID patient",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Invalid input"
+          }
+        }
+      },
+      "get" : {
+        "tags" : [ "patient" ],
+        "summary" : "Get a corresponding patient",
+        "operationId" : "getPatientSymptoms",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "patientId",
+          "description" : "Id of the Patient",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          }
+        }
+      }
+    },
+    "/patient/{patientId}/history" : {
+      "get" : {
+        "tags" : [ "report" ],
+        "summary" : "Get History of Symptoms for patient (One list for each symptom)",
+        "operationId" : "getPatientHistory",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "patientId",
+          "description" : "Id of the Patient",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          }
+        }
+      }
+    },
+    "/report" : {
+      "get" : {
+        "tags" : [ "report" ],
+        "summary" : "generate report",
+        "operationId" : "getReport",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          }
+        }
+      }
+    },
+    "/messagePatients" : {
+      "post" : {
+        "tags" : [ "message" ],
+        "summary" : "send email to list of patients specified by list of id",
+        "operationId" : "messagePatients",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "patientIds",
+          "description" : "list of patient ids",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Invalid input"
+          }
+        }
+      }
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/alchmi/Symptom_Tracker_Patient_API/1.0.0",
+  "schemes" : [ "https", "http" ]
+}
