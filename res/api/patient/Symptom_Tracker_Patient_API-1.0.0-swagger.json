@@ -126,7 +126,7 @@
           "schema" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/definitions/SymptomJourneyModelCreate"
+              "$ref" : "#/definitions/SymptomJourneyModel"
             }
           }
         } ],
@@ -156,7 +156,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/SymptomJourneyModelGet"
+                "$ref" : "#/definitions/SymptomJourneyModel"
               }
             }
           }
