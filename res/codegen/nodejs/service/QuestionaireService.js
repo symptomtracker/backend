@@ -1,6 +1,8 @@
 'use strict';
 
-
+/*
+ * Currently out of scope for the WirVsVirus Hackathon
+ */
 /**
  * get catalogue questsions
  *
