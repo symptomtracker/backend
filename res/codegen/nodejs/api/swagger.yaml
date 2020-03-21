@@ -123,8 +123,8 @@ paths:
         in: "path"
         description: "Id of the Patient"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "string"
       - in: "body"
         name: "body"
         description: "Representation of the current patient"
@@ -152,8 +152,8 @@ paths:
         in: "path"
         description: "ID patient"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "string"
       responses:
         "200":
           description: "Invalid input"
@@ -176,8 +176,8 @@ paths:
         in: "path"
         description: "ID patient"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "string"
       - in: "body"
         name: "body"
         description: "Representation of the current patient"
