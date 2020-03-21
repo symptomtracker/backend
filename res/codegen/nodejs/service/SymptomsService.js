@@ -1,3 +1,5 @@
+const mongoDbUtils = require("../database");
+
 'use strict';
 
 
@@ -10,7 +12,9 @@
  **/
 exports.addNewSymptoms = function(_id,body) {
   return new Promise(function(resolve, reject) {
-    resolve();
+    mongoDbUtils.add_symptom_values(_id, body, () => {
+      resolve();
+    });
   });
 }
 
@@ -22,8 +26,8 @@ exports.addNewSymptoms = function(_id,body) {
  * returns List
  **/
 exports.getAllSymptoms = function(_id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
+  return mongoDbUtils.get_symptom_values(_id);
+    /*var examples = {};
     examples['application/json'] = [ {
   "description'" : "description'",
   "createdAt" : "2000-01-23T04:56:07.000+00:00",
@@ -36,12 +40,6 @@ exports.getAllSymptoms = function(_id) {
   "@Category" : "@Category",
   "comment" : "comment",
   "symptomSeverity" : "symptomSeverity"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+} ];*/
 }
 
