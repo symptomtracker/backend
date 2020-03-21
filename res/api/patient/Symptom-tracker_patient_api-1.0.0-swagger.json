@@ -46,6 +46,52 @@
             }
           }
         }
+      },
+      "get" : {
+        "tags" : [ "patient" ],
+        "summary" : "Get a filtered list of patients",
+        "operationId" : "queryPatients",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "highRisk",
+          "description" : "whether the Patient is at Risk",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "in" : "query",
+          "name" : "inactive",
+          "description" : "whether the Patient has been inactive for more than x hours",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "minAge",
+          "description" : "minimum age of patients",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "maxAge",
+          "description" : "maximum age of patients",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/PatientModel"
+              }
+            }
+          }
+        }
       }
     },
     "/patient/{patientId}" : {
@@ -126,7 +172,7 @@
           "schema" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/definitions/SymptomJourneyModelCreate"
+              "$ref" : "#/definitions/SymptomJourneyModel"
             }
           }
         } ],
@@ -156,7 +202,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/SymptomJourneyModelGet"
+                "$ref" : "#/definitions/SymptomJourneyModel"
               }
             }
           }
@@ -179,6 +225,74 @@
                 "$ref" : "#/definitions/SymptomCatalogueItem"
               }
             }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "questionaire" ],
+        "summary" : "Add a new catalogue questsion",
+        "operationId" : "putCatalogueQuestion",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Representation of the current patient",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/SymptomCatalogueItem"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns array of symptom catalogue items",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/SymptomCatalogueItem"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report" : {
+      "get" : {
+        "tags" : [ "report" ],
+        "summary" : "generate report",
+        "operationId" : "getReport",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          }
+        }
+      }
+    },
+    "/messagePatients" : {
+      "post" : {
+        "tags" : [ "message" ],
+        "summary" : "send email to list of patients specified by list of id",
+        "operationId" : "messagePatients",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "patientIds",
+          "description" : "list of patient ids",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "sending has been successful"
           }
         }
       }
@@ -243,7 +357,7 @@
         "symptomJourney" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#/definitions/SymptomJourneyModelGet"
+            "$ref" : "#/definitions/SymptomJourneyModel"
           }
         }
       }
