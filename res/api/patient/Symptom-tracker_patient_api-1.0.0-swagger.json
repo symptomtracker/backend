@@ -12,7 +12,7 @@
     "name" : "symptoms",
     "description" : "Everything regarding symptoms"
   }, {
-    "name" : "questionaire",
+    "name" : "questionnaire",
     "description" : "Everything regarding questions"
   } ],
   "paths" : {
@@ -167,7 +167,7 @@
         }, {
           "in" : "body",
           "name" : "body",
-          "description" : "Representation of the current patient",
+          "description" : "Representation of a Symptom Journey",
           "required" : true,
           "schema" : {
             "type" : "array",
@@ -211,7 +211,7 @@
     },
     "/catalogue" : {
       "get" : {
-        "tags" : [ "questionaire" ],
+        "tags" : [ "questionnaire" ],
         "summary" : "get catalogue questsions",
         "operationId" : "getCatalogueItems",
         "consumes" : [ "application/json" ],
@@ -229,7 +229,7 @@
         }
       },
       "put" : {
-        "tags" : [ "questionaire" ],
+        "tags" : [ "questionnaire" ],
         "summary" : "Add  new catalogue questions",
         "operationId" : "putCatalogueQuestion",
         "consumes" : [ "application/json" ],
@@ -237,7 +237,7 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "body",
-          "description" : "Representation of the current patient",
+          "description" : "Representation of a symptom",
           "required" : true,
           "schema" : {
             "type" : "array",
