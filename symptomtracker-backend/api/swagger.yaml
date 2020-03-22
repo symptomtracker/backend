@@ -1,0 +1,425 @@
+---
+swagger: "2.0"
+info:
+  description: "This is the Patient's Client API for the Symptom Tracker\n"
+  version: "1.0.0"
+  title: "Symptom Tracker Patient API"
+host: "api.symptomtracker.de"
+basePath: "/1.0.0"
+tags:
+- name: "patient"
+  description: "Everything regarding a pathient"
+- name: "symptoms"
+  description: "Everything regarding symptoms"
+- name: "questionaire"
+  description: "Everything regarding questions"
+schemes:
+- "https"
+- "http"
+paths:
+  /patient:
+    get:
+      tags:
+      - "patient"
+      summary: "Get a filtered list of patients"
+      operationId: "queryPatients"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "highRisk"
+        in: "query"
+        description: "whether the Patient is at Risk"
+        required: false
+        type: "boolean"
+      - name: "inactive"
+        in: "query"
+        description: "whether the Patient has been inactive for more than x hours"
+        required: false
+        type: "integer"
+        format: "int64"
+      - name: "minAge"
+        in: "query"
+        description: "minimum age of patients"
+        required: false
+        type: "integer"
+        format: "int64"
+      - name: "maxAge"
+        in: "query"
+        description: "maximum age of patients"
+        required: false
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PatientModel"
+      x-swagger-router-controller: "Patient"
+    post:
+      tags:
+      - "patient"
+      summary: "Create new patient"
+      operationId: "addNewPatient"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "invitationCode"
+        in: "query"
+        description: "Invitation Code of the Health Department"
+        required: false
+        type: "integer"
+      - in: "body"
+        name: "body"
+        description: "Describing the new patient"
+        required: true
+        schema:
+          $ref: "#/definitions/PatientCreateRequest"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PatientModel"
+      x-swagger-router-controller: "Patient"
+  /patient/{_id}:
+    get:
+      tags:
+      - "patient"
+      summary: "Get a corresponding patient"
+      operationId: "getPatient"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "_id"
+        in: "path"
+        description: "Id of the Patient"
+        required: true
+        type: "string"
+        format: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PatientModel"
+      x-swagger-router-controller: "Patient"
+    patch:
+      tags:
+      - "patient"
+      summary: "Patch a current Patient"
+      operationId: "patchPatient"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "_id"
+        in: "path"
+        description: "Id of the Patient"
+        required: true
+        type: "string"
+        format: "string"
+      - in: "body"
+        name: "body"
+        description: "Representation of the current patient"
+        required: true
+        schema:
+          $ref: "#/definitions/PatientModel"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PatientModel"
+      x-swagger-router-controller: "Patient"
+  /patient/{_id}/symptom:
+    get:
+      tags:
+      - "symptoms"
+      summary: "Get Symptoms"
+      operationId: "getAllSymptoms"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "_id"
+        in: "path"
+        description: "ID patient"
+        required: true
+        type: "string"
+        format: "string"
+      responses:
+        "200":
+          description: "Invalid input"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/SymptomJourneyModel"
+      x-swagger-router-controller: "Symptoms"
+    put:
+      tags:
+      - "symptoms"
+      summary: "Add a new"
+      operationId: "addNewSymptoms"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "_id"
+        in: "path"
+        description: "ID patient"
+        required: true
+        type: "string"
+        format: "string"
+      - in: "body"
+        name: "body"
+        description: "Representation of the current patient"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/SymptomJourneyModel"
+      responses:
+        "204":
+          description: "Happy case - no content"
+      x-swagger-router-controller: "Symptoms"
+  /catalogue:
+    get:
+      tags:
+      - "questionaire"
+      summary: "get catalogue questsions"
+      operationId: "getCatalogueItems"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "returns array of symptom catalogue items"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/SymptomCatalogueItem"
+      x-swagger-router-controller: "Questionaire"
+    put:
+      tags:
+      - "questionaire"
+      summary: "Add a new catalogue questsion"
+      operationId: "putCatalogueQuestion"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Representation of the current patient"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/SymptomCatalogueItem"
+      responses:
+        "200":
+          description: "returns array of symptom catalogue items"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/SymptomCatalogueItem"
+      x-swagger-router-controller: "Questionaire"
+  /report:
+    get:
+      tags:
+      - "report"
+      summary: "generate report"
+      operationId: "getReport"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Response"
+      x-swagger-router-controller: "Report"
+  /messagePatients:
+    post:
+      tags:
+      - "message"
+      summary: "send email to list of patients specified by list of id"
+      operationId: "messagePatients"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "_ids"
+        in: "query"
+        description: "list of patient ids"
+        required: true
+        type: "array"
+        items:
+          type: "integer"
+        collectionFormat: "multi"
+      responses:
+        "204":
+          description: "sending has been successful"
+      x-swagger-router-controller: "Message"
+definitions:
+  PatientCreateRequest:
+    type: "object"
+    required:
+    - "age"
+    - "city"
+    - "gender"
+    - "name"
+    properties:
+      name:
+        type: "string"
+        format: "string"
+      age:
+        type: "integer"
+        format: "int64"
+      gender:
+        type: "string"
+        format: "string"
+      city:
+        type: "string"
+        format: "string"
+    example:
+      gender: "gender"
+      city: "city"
+      name: "name"
+      age: 0
+  PatientModel:
+    type: "object"
+    properties:
+      _id:
+        type: "string"
+        format: "string"
+      linkedCode:
+        type: "string"
+        format: "string"
+      name:
+        type: "string"
+        format: "string"
+      age:
+        type: "integer"
+        format: "int64"
+      gender:
+        type: "string"
+        format: "string"
+      city:
+        type: "string"
+        format: "string"
+      relatedAttributes:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedAttribute"
+      symptomJourney:
+        type: "array"
+        items:
+          $ref: "#/definitions/SymptomJourneyModel"
+    example:
+      linkedCode: "linkedCode"
+      gender: "gender"
+      relatedAttributes:
+      - '@Type': "@Type"
+        '@Value': "@Value"
+      - '@Type': "@Type"
+        '@Value': "@Value"
+      city: "city"
+      symptomJourney:
+      - description: "description"
+        createdAt: "2000-01-23T04:56:07.000+00:00"
+        '@Category': "@Category"
+        comment: "comment"
+        symptomSeverity: "symptomSeverity"
+      - description: "description"
+        createdAt: "2000-01-23T04:56:07.000+00:00"
+        '@Category': "@Category"
+        comment: "comment"
+        symptomSeverity: "symptomSeverity"
+      name: "name"
+      id: 0
+      age: 6
+  RelatedAttribute:
+    type: "object"
+    properties:
+      '@Type':
+        type: "string"
+        format: "string"
+      '@Value':
+        type: "string"
+        format: "string"
+    example:
+      '@Type': "@Type"
+      '@Value': "@Value"
+  SymptomJourneyModel:
+    type: "object"
+    required:
+    - "@Category"
+    - "symptomSeverity"
+    properties:
+      '@Category':
+        type: "string"
+        format: "string"
+      description:
+        type: "string"
+        format: "string"
+      symptomSeverity:
+        type: "string"
+        format: "string"
+      comment:
+        type: "string"
+        format: "string"
+      createdAt:
+        type: "string"
+        format: "date-time"
+    example:
+      description: "description"
+      createdAt: "2000-01-23T04:56:07.000+00:00"
+      '@Category': "@Category"
+      comment: "comment"
+      symptomSeverity: "symptomSeverity"
+  SymptomCatalogueItem:
+    type: "object"
+    required:
+    - "@Category"
+    - "symptomSeverity"
+    - "description"
+    - "toolTip"
+    - "toolTipLink"
+    properties:
+      '@Category':
+        type: "string"
+        format: "string"
+      description:
+        type: "string"
+        format: "string"
+      toolTip:
+        type: "string"
+        format: "string"
+      toolTipLink:
+        type: "string"
+        format: "string"
+      symptomSeverity:
+        type: "array"
+        items:
+          type: "string"
+    example:
+      '@Category': "@Category"
+      description: "description"
+      toolTip: "toolTip"
+      toolTipLink: "toolTipLink"
+      symptomSeverity:
+      - "symptomSeverity"
+      - "symptomSeverity"

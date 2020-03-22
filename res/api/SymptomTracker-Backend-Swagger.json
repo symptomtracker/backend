@@ -1,0 +1,436 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is the Backend API for the Symptom Tracker\n",
+    "version" : "1.0.0",
+    "title" : "Symptom Tracker Backend API"
+  },
+  "tags" : [ {
+    "name" : "patient",
+    "description" : "Everything regarding a pathient"
+  }, {
+    "name" : "symptoms",
+    "description" : "Everything regarding symptoms"
+  }, {
+    "name" : "questionaire",
+    "description" : "Everything regarding questions"
+  } ],
+  "paths" : {
+    "/patient" : {
+      "post" : {
+        "tags" : [ "patient" ],
+        "summary" : "Create new patient",
+        "operationId" : "addNewPatient",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "invitationCode",
+          "description" : "Invitation Code of the Health Department",
+          "required" : false,
+          "type" : "integer"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Describing the new patient",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/PatientCreateRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/PatientModel"
+            }
+          }
+        }
+      },
+      "get" : {
+        "tags" : [ "patient" ],
+        "summary" : "Get a filtered list of patients",
+        "operationId" : "queryPatients",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "highRisk",
+          "description" : "whether the Patient is at Risk",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "in" : "query",
+          "name" : "inactive",
+          "description" : "whether the Patient has been inactive for more than x hours",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "minAge",
+          "description" : "minimum age of patients",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "query",
+          "name" : "maxAge",
+          "description" : "maximum age of patients",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/PatientModel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{_id}" : {
+      "get" : {
+        "tags" : [ "patient" ],
+        "summary" : "Get a corresponding patient",
+        "operationId" : "getPatient",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "_id",
+          "description" : "Id of the Patient",
+          "required" : true,
+          "type" : "string",
+          "format" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/PatientModel"
+            }
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "patient" ],
+        "summary" : "Patch a current Patient",
+        "operationId" : "patchPatient",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "_id",
+          "description" : "Id of the Patient",
+          "required" : true,
+          "type" : "string",
+          "format" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Representation of the current patient",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/PatientModel"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/PatientModel"
+            }
+          }
+        }
+      }
+    },
+    "/patient/{_id}/symptom" : {
+      "put" : {
+        "tags" : [ "symptoms" ],
+        "summary" : "Add a new",
+        "operationId" : "addNewSymptoms",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "_id",
+          "description" : "ID patient",
+          "required" : true,
+          "type" : "string",
+          "format" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Representation of the current patient",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/SymptomJourneyModel"
+            }
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Happy case - no content"
+          }
+        }
+      },
+      "get" : {
+        "tags" : [ "symptoms" ],
+        "summary" : "Get Symptoms",
+        "operationId" : "getAllSymptoms",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "_id",
+          "description" : "ID patient",
+          "required" : true,
+          "type" : "string",
+          "format" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Invalid input",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/SymptomJourneyModel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalogue" : {
+      "get" : {
+        "tags" : [ "questionaire" ],
+        "summary" : "get catalogue questsions",
+        "operationId" : "getCatalogueItems",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "returns array of symptom catalogue items",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/SymptomCatalogueItem"
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "questionaire" ],
+        "summary" : "Add a new catalogue questsion",
+        "operationId" : "putCatalogueQuestion",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Representation of the current patient",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/SymptomCatalogueItem"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns array of symptom catalogue items",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/SymptomCatalogueItem"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report" : {
+      "get" : {
+        "tags" : [ "report" ],
+        "summary" : "generate report",
+        "operationId" : "getReport",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Response"
+          }
+        }
+      }
+    },
+    "/messagePatients" : {
+      "post" : {
+        "tags" : [ "message" ],
+        "summary" : "send email to list of patients specified by list of id",
+        "operationId" : "messagePatients",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "_ids",
+          "description" : "list of patient ids",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "sending has been successful"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "PatientCreateRequest" : {
+      "type" : "object",
+      "required" : [ "name", "age", "gender", "city" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "format" : "string"
+        },
+        "age" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "gender" : {
+          "type" : "string",
+          "format" : "string"
+        },
+        "city" : {
+          "type" : "string",
+          "format" : "string"
+        }
+      }
+    },
+    "PatientModel" : {
+      "type" : "object",
+      "properties" : {
+        "_id" : {
+          "type" : "string",
+          "format" : "string"
+        },
+        "linkedCode" : {
+          "type" : "string",
+          "format" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "format" : "string"
+        },
+        "age" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "gender" : {
+          "type" : "string",
+          "format" : "string"
+        },
+        "city" : {
+          "type" : "string",
+          "format" : "string"
+        },
+        "relatedAttributes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RelatedAttribute"
+          }
+        },
+        "symptomJourney" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/SymptomJourneyModel"
+          }
+        }
+      }
+    },
+    "RelatedAttribute" : {
+      "type" : "object",
+      "properties" : {
+        "@Type" : {
+          "format" : "string",
+          "type" : "string"
+        },
+        "@Value" : {
+          "format" : "string",
+          "type" : "string"
+        }
+      }
+    },
+    "SymptomJourneyModel" : {
+      "type" : "object",
+      "required" : [ "@Category", "description", "symptomSeverity" ],
+      "properties" : {
+        "@Category" : {
+          "format" : "string",
+          "type" : "string"
+        },
+        "description'" : {
+          "format" : "string",
+          "type" : "string"
+        },
+        "symptomSeverity" : {
+          "type" : "string",
+          "format" : "string"
+        },
+        "comment" : {
+          "type" : "string",
+          "format" : "string"
+        },
+        "createdAt" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "SymptomCatalogueItem" : {
+      "type" : "object",
+      "required" : [ "@Category", "description", "symptomSeverity", "toolTip", "toolTipLink" ],
+      "properties" : {
+        "@Category" : {
+          "format" : "string",
+          "type" : "string"
+        },
+        "description" : {
+          "format" : "string",
+          "type" : "string"
+        },
+        "toolTip" : {
+          "format" : "string",
+          "type" : "string"
+        },
+        "toolTipLink" : {
+          "format" : "string",
+          "type" : "string"
+        },
+        "symptomSeverity" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "host" : "api.symptomtracker.de",
+  "basePath" : "/1.0.0",
+  "schemes" : [ "https", "http" ]
+}
