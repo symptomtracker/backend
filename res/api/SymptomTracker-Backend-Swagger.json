@@ -1,9 +1,9 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "This is the Patient's Client API for the Symptom Tracker\n",
+    "description" : "This is the Backend API for the Symptom Tracker\n",
     "version" : "1.0.0",
-    "title" : "Symptom Tracker Patient API"
+    "title" : "Symptom Tracker Backend API"
   },
   "tags" : [ {
     "name" : "patient",
