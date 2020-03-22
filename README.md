@@ -7,6 +7,8 @@ This project is one of the core components of the whole [Symptomtracker](https:/
 
 The backend serves as a logic and persistence layer, which provides an API for several clients, which can be found here:
     * [Symptomtracker Project](https://github.com/symptomtracker)
+    
+A live version of our API can be found at [api.symptomtracker.de](https://api.symptomtracker.de/docs/).
 
 ## Getting Started
 
