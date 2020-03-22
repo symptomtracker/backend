@@ -325,7 +325,8 @@ definitions:
       contact_risk:
         type: "boolean"
       contact_date:
-        type: "date-time"
+        type: "string"
+        format: "date-time"
       work:
         type: "string"
       smoker:
