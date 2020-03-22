@@ -395,11 +395,16 @@ definitions:
     required:
     - "@Category"
     - "symptomSeverity"
+    - "description"
+    - "toolTip"
     properties:
       '@Category':
         type: "string"
         format: "string"
       description:
+        type: "string"
+        format: "string"
+      toolTip:
         type: "string"
         format: "string"
       symptomSeverity:

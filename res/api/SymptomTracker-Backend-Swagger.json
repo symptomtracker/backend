@@ -403,13 +403,17 @@
     },
     "SymptomCatalogueItem" : {
       "type" : "object",
-      "required" : [ "@Category", "descirption", "symptomSeverity" ],
+      "required" : [ "@Category", "descirption", "symptomSeverity", "toolTip" ],
       "properties" : {
         "@Category" : {
           "format" : "string",
           "type" : "string"
         },
         "description" : {
+          "format" : "string",
+          "type" : "string"
+        },
+        "toolTip" : {
           "format" : "string",
           "type" : "string"
         },
