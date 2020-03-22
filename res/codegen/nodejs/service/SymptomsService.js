@@ -14,7 +14,7 @@ exports.addNewSymptoms = function(_id,body) {
   return new Promise(function(resolve, reject) {
     mongoDbUtils.add_symptom_values(_id, body).then(() => {
       resolve();
-    }).catch(() => reject);
+    }).catch(reject);
   });
 }
 
