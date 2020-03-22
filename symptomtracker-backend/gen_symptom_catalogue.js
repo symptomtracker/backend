@@ -206,7 +206,16 @@ let catalogueItems = [
     },
 ];
 
-db.add_catalogue_items(catalogueItems).then((items) => {
-    console.log(items);
-    console.log("SUCCESS");
-});
+function fillDB() {
+    db.count_catalogue_items().then((count) => {
+        if (count === 0) {
+            db.add_catalogue_items(catalogueItems).then((items) => {
+                console.log(items);
+                console.log("SUCCESS");
+            });
+        }
+    })
+}
+
+exports.symptomCatalogue = catalogueItems;
+exports.fillDB = fillDB;
