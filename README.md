@@ -5,6 +5,9 @@ Symptomtracker Backend Server
 ## Project Description
 This project is one of the core components of the whole [Symptomtracker](https://devpost.com/software/symptomtracker-62xhkp) Project. This project arose during the [WirVsVirusHackathon](https://www.bundesregierung.de/breg-de/themen/coronavirus/wir-vs-virus-1731968) Event.
 
+The backend serves as a logic and persistence layer, which provides an API for several clients, which can be found here:
+    * [Symptomtracker Project](https://github.com/symptomtracker)
+
 ## Getting Started
 
 You need to clone the project and start a NodeJS Server + a MongoDB database to have it running on localhost.
