@@ -77,7 +77,7 @@ Nevertheless it is required to take following points into consideration in terms
 
 ## Authors
 
-The initial Project was created by participants of the [Symptomtracker Team](https://devpost.com/software/symptomtracker-62xhkp) Event.
+The initial Project was created by participants of the [Symptomtracker Team](https://devpost.com/software/symptomtracker-62xhkp).
 
 * **Alex** - - [alexanderchmielewski](https://github.com/alexanderchmielewski)
 * **Malte** - - [m1a9l9t7e](https://github.com/m1a9l9t7e)
