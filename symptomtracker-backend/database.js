@@ -84,6 +84,16 @@ exports.list_catalogue_items = function () {
     });
 };
 
+exports.truncate_catalogue_items = function () {
+    return connection.then(
+        () => {
+            const db = client.db('symptomTracker');
+            const coll = db.collection('catalogue');
+            return coll.remove({});
+        }
+    )
+};
+
 exports.add_catalogue_items = function (items) {
     return connection.then(() => {
         const db = client.db('symptomTracker');
