@@ -43,7 +43,7 @@ let catalogueItems = [
         "description": "Muskel- und Gelenkschmerzen",
         "symptomSeverity": [
             "",
-            "Muskel- und Gelenkschmerzen",
+            "Ja",
         ],
         "toolTip": "Andauernde oder immer wiederkehrende Schmerzen an Muskeln, Sehnen und Gelenken.",
         "toolTipLink": "https://www.apotheken-umschau.de/gelenkschmerzen"
@@ -125,7 +125,7 @@ let catalogueItems = [
         "description": "Appetitlosigkeit",
         "symptomSeverity": [
             "",
-            "Appetitlosigkeit"
+            "Ja"
         ],
         "toolTip": "Beschreibt den Mangel an Hungergefühl.",
         "toolTipLink": "https://www.apotheken-umschau.de/appetitlosigkeit"
@@ -135,7 +135,7 @@ let catalogueItems = [
         "description": "Gewichtsverlust",
         "symptomSeverity": [
             "",
-            "Gewichtsverlust"
+            "Ja"
         ],
         "toolTip": "Ungewollte Gewichtsabnahme unter normalen Umständen.",
         "toolTipLink": "https://www.apotheken-umschau.de/gewichtsverlust"
@@ -157,7 +157,7 @@ let catalogueItems = [
         "description": "Bindehautentzündung",
         "symptomSeverity": [
             "",
-            "Bindehautentzündung"
+            "Ja"
         ],
         "toolTip": "Entzündung der Bindehaut des Auges.",
         "toolTipLink": "https://www.apotheken-umschau.de/Bindehautentzuendung"
@@ -179,7 +179,7 @@ let catalogueItems = [
         "description": "Lymphknotenschwellung",
         "symptomSeverity": [
             "",
-            "Lymphknotenschwellung"
+            "Ja"
         ],
         "toolTip": "Angeschwollenes rundliches Organ, welches Lymphozyten bildet und gleichzeitig einen Filter gegenüber Krankheitserregern darstellt. Diese sind am ganzen Körper verteilt.",
         "toolTipLink": "https://www.apotheken-umschau.de/Krankheiten/Lymphknotenschwellung-Moegliche-Ursachen-90743.html"
@@ -189,7 +189,7 @@ let catalogueItems = [
         "description": "Teilnahmslosigkeit (Apathie)",
         "symptomSeverity": [
             "",
-            "Teilnahmslosigkeit (Apathie)"
+            "Ja"
         ],
         "toolTip": "Zustand der Gleichgültigkeit gegenüber dem Menschen und der Umwelt.",
         "toolTipLink": "https://www.duden.de/rechtschreibung/Apathie"
@@ -199,7 +199,7 @@ let catalogueItems = [
         "description": "Weitere nicht-aufgelistete Symptome",
         "symptomSeverity": [
             "",
-            "Weitere nicht-aufgelistete Symptome"
+            "Ja"
         ],
         "toolTip": "Bitte nennen Sie hier weitere Symptome die Ihnen aufgefallen sind.",
         "toolTipLink": null
