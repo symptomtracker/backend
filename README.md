@@ -1,8 +1,6 @@
-# Project Title
+# Symptomtracker Backend Server
 
-Symptomtracker Backend Server
-
-## Project Description
+## Description
 This project is one of the core components of the whole [Symptomtracker](https://devpost.com/software/symptomtracker-62xhkp) Project. This project arose during the [WirVsVirusHackathon](https://www.bundesregierung.de/breg-de/themen/coronavirus/wir-vs-virus-1731968) Event.
 
 The backend serves as a logic and persistence layer, which provides an API for several clients, which can be found here:
@@ -67,6 +65,10 @@ Nevertheless it is required to take following points into consideration in terms
 * Securing the persistence layer
     * Securing the Transport Layer
     * Securing Data at rest, since we're storing sensitive patients' data
+
+## Further documentation
+
+UML-Diagrams about the different use cases supported can be found [here](docs/UseCases.md).
 
 ## Built With
 
