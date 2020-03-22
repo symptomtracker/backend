@@ -5,10 +5,10 @@ const uri = "mongodb://localhost:27017";
 const client = new MongoClient(uri);
 const connection = client.connect();
 
-Date.prototype.toISOStringWithTimezone = function() {
+Date.prototype.toISOStringWithTimezone = function () {
     var tzo = -this.getTimezoneOffset(),
         dif = tzo >= 0 ? '+' : '-',
-        pad = function(num) {
+        pad = function (num) {
             var norm = Math.floor(Math.abs(num));
             return (norm < 10 ? '0' : '') + norm;
         };
@@ -70,7 +70,12 @@ exports.list_all_patients = function (highRisk, inactive, minAge, maxAge, callba
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
         // TODO @Simon: add inactive & highrisk flags
-        coll.find({age: {$gt: minAge === undefined ? 0 : minAge, $lt: maxAge === undefined ? Number.MAX_VALUE : maxAge}}).toArray(function (err, items) {
+        coll.find({
+            age: {
+                $gt: minAge === undefined ? 0 : minAge,
+                $lt: maxAge === undefined ? Number.MAX_VALUE : maxAge
+            }
+        }).toArray(function (err, items) {
             return callback(items);
         });
     });
@@ -93,6 +98,14 @@ exports.truncate_catalogue_items = function () {
         }
     )
 };
+
+exports.count_catalogue_items = function () {
+    return connection.then(() => {
+        const db = client.db('symptomTracker');
+        const coll = db.collection('catalogue');
+        return coll.count();
+    });
+}
 
 exports.add_catalogue_items = function (items) {
     return connection.then(() => {

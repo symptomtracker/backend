@@ -171,11 +171,13 @@ let catalogueItems = [
 ];
 
 function fillDB() {
-    db.truncate_catalogue_items().then(() => {
-        db.add_catalogue_items(catalogueItems).then((items) => {
-            console.log(items);
-            console.log("SUCCESS");
-        });
+    db.count_catalogue_items().then((count) => {
+        if (count === 0) {
+            db.add_catalogue_items(catalogueItems).then((items) => {
+                console.log(items);
+                console.log("SUCCESS");
+            });
+        }
     })
 }
 
