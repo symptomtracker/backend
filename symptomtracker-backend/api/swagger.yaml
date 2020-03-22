@@ -320,6 +320,24 @@ definitions:
       city:
         type: "string"
         format: "string"
+      geo_risk:
+        type: "boolean"
+      contact_risk:
+        type: "boolean"
+      contact_date:
+        type: "date"
+      work:
+        type: "string"
+      smoker:
+        type: "boolean"
+      preexisting_conditions:
+        type: "array"
+        items:
+          type: "string"
+      immunal_suppressors:
+        type: "boolean"
+      pregnant:
+        type: "boolean"
       relatedAttributes:
         type: "array"
         items:
