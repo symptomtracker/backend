@@ -338,12 +338,12 @@ definitions:
         '@Value': "@Value"
       city: "city"
       symptomJourney:
-      - description': "description'"
+      - description: "description"
         createdAt: "2000-01-23T04:56:07.000+00:00"
         '@Category': "@Category"
         comment: "comment"
         symptomSeverity: "symptomSeverity"
-      - description': "description'"
+      - description: "description"
         createdAt: "2000-01-23T04:56:07.000+00:00"
         '@Category': "@Category"
         comment: "comment"
@@ -372,7 +372,7 @@ definitions:
       '@Category':
         type: "string"
         format: "string"
-      description':
+      description:
         type: "string"
         format: "string"
       symptomSeverity:
@@ -385,7 +385,7 @@ definitions:
         type: "string"
         format: "date-time"
     example:
-      description': "description'"
+      description: "description"
       createdAt: "2000-01-23T04:56:07.000+00:00"
       '@Category': "@Category"
       comment: "comment"
