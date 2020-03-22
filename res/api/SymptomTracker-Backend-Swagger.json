@@ -403,13 +403,21 @@
     },
     "SymptomCatalogueItem" : {
       "type" : "object",
-      "required" : [ "@Category", "descirption", "symptomSeverity" ],
+      "required" : [ "@Category", "description", "symptomSeverity", "toolTip", "toolTipLink" ],
       "properties" : {
         "@Category" : {
           "format" : "string",
           "type" : "string"
         },
         "description" : {
+          "format" : "string",
+          "type" : "string"
+        },
+        "toolTip" : {
+          "format" : "string",
+          "type" : "string"
+        },
+        "toolTipLink" : {
           "format" : "string",
           "type" : "string"
         },
@@ -422,7 +430,7 @@
       }
     }
   },
-  "host" : "virtserver.swaggerhub.com",
-  "basePath" : "/alchmi/Symptom_Tracker_Patient_API/1.0.0",
+  "host" : "api.symptomtracker.de",
+  "basePath" : "/1.0.0",
   "schemes" : [ "https", "http" ]
 }

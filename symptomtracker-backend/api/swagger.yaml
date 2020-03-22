@@ -4,8 +4,8 @@ info:
   description: "This is the Patient's Client API for the Symptom Tracker\n"
   version: "1.0.0"
   title: "Symptom Tracker Patient API"
-host: "virtserver.swaggerhub.com"
-basePath: "/alchmi/Symptom_Tracker_Patient_API/1.0.0"
+host: "api.symptomtracker.de"
+basePath: "/1.0.0"
 tags:
 - name: "patient"
   description: "Everything regarding a pathient"
@@ -414,11 +414,20 @@ definitions:
     required:
     - "@Category"
     - "symptomSeverity"
+    - "description"
+    - "toolTip"
+    - "toolTipLink"
     properties:
       '@Category':
         type: "string"
         format: "string"
       description:
+        type: "string"
+        format: "string"
+      toolTip:
+        type: "string"
+        format: "string"
+      toolTipLink:
         type: "string"
         format: "string"
       symptomSeverity:
@@ -428,6 +437,8 @@ definitions:
     example:
       '@Category': "@Category"
       description: "description"
+      toolTip: "toolTip"
+      toolTipLink: "toolTipLink"
       symptomSeverity:
       - "symptomSeverity"
       - "symptomSeverity"
