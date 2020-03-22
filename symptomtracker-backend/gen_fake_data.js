@@ -11,7 +11,8 @@ const {symptomCatalogue, _} = require('./gen_symptom_catalogue');
 function generateSymptomJourney(duration) {
     let symptomJourney = [];
     for (let i = 0; i < duration; i++) {
-        let createdAt = faker.date.past((duration - i));
+        let createdAt = new Date();
+        createdAt.setDate(createdAt.getDate() - duration + i);
         for (let j = 0; j < symptomCatalogue.length; j++) {
             let symptom = symptomCatalogue[j];
             symptomJourney.push(
