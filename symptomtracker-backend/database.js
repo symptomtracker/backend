@@ -76,24 +76,19 @@ exports.list_all_patients = function (highRisk, inactive, minAge, maxAge, callba
     });
 };
 
-exports.list_catalogue_items = function (callback) {
-    connection.then(() => {
+exports.list_catalogue_items = function () {
+    return connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('catalogue');
-        coll.find().toArray(function (err, items) {
-            return callback(items);
-        });
+        return coll.find().toArray();
     });
 };
 
 exports.add_catalogue_items = function (items) {
-    connection.then(() => {
+    return connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('catalogue');
-        // TODO bulk insert
-        coll.insertOne(items, (err, result) => {
-            if (err) throw err
-        })
+        return coll.insertMany(items);
     });
 };
 

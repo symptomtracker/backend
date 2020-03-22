@@ -1,32 +1,15 @@
+const mongoDbUtils = require("../database");
+
 'use strict';
 
-/*
- * Currently out of scope for the WirVsVirus Hackathon
- */
 /**
  * get catalogue questsions
  *
  * returns List
  **/
 exports.getCatalogueItems = function() {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "@Category" : "@Category",
-  "description" : "description",
-  "symptomSeverity" : [ "symptomSeverity", "symptomSeverity" ]
-}, {
-  "@Category" : "@Category",
-  "description" : "description",
-  "symptomSeverity" : [ "symptomSeverity", "symptomSeverity" ]
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+    return mongoDbUtils.list_catalogue_items();
+};
 
 
 /**
@@ -36,22 +19,10 @@ exports.getCatalogueItems = function() {
  * returns List
  **/
 exports.putCatalogueQuestion = function(body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "@Category" : "@Category",
-  "description" : "description",
-  "symptomSeverity" : [ "symptomSeverity", "symptomSeverity" ]
-}, {
-  "@Category" : "@Category",
-  "description" : "description",
-  "symptomSeverity" : [ "symptomSeverity", "symptomSeverity" ]
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+    return new Promise((resolve, reject) => {
+        mongoDbUtils.add_catalogue_items(body).then(() => {
+            resolve()
+        }).catch(reject);
+    });
+};
 
