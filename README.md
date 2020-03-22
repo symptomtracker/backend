@@ -85,7 +85,7 @@ The initial Project was created by participants of the [Symptomtracker Team](htt
 * **Malte** - - [m1a9l9t7e](https://github.com/m1a9l9t7e)
 * **Simon** - - [sleiss](https://github.com/sleiss)
 * **Sven** - - [svenlr](https://github.com/svenlr)
-* **Christian** - - [###](###)
+* **Christian** - - [ChrisGold](https://github.com/ChrisGold)
 
 See also the list of [contributors](https://github.com/symptomtracker/backend/contributors) who participated in this project.
 
