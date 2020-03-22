@@ -77,14 +77,13 @@ Nevertheless it is required to take following points into consideration in terms
 
 ## Authors
 
-The initial Project was created by participants of the [WirVsVirusHackathon](https://www.bundesregierung.de/breg-de/themen/coronavirus/wir-vs-virus-1731968) Event.
+The initial Project was created by participants of the [Symptomtracker Team](https://devpost.com/software/symptomtracker-62xhkp) Event.
 
 * **Alex** - - [alexanderchmielewski](https://github.com/alexanderchmielewski)
 * **Malte** - - [m1a9l9t7e](https://github.com/m1a9l9t7e)
 * **Simon** - - [sleiss](https://github.com/sleiss)
 * **Sven** - - [svenlr](https://github.com/svenlr)
 * **Christian** - - [###](###)
-//Who wants to be listed aswell?
 
 See also the list of [contributors](https://github.com/symptomtracker/backend/contributors) who participated in this project.
 
