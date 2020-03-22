@@ -2,7 +2,7 @@ const db = require("./database");
 
 let catalogueItems = [
     {
-        "@Category": "Kopf",
+        "@Category": "Hauptsymptome",
         "description": "Fieber",
         "symptomSeverity": [
             "",
@@ -10,163 +10,181 @@ let catalogueItems = [
             "38,6 - 39,0 °C (mäßiges Fieber)",
             "39,1 - 39,9 °C (hohes Fieber)",
             "> 40,0 °C (sehr hohes Fieber)",
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Lunge",
+        "@Category": "Hauptsymptome",
         "description": "Kurzatmigkeit/Atemnot",
         "symptomSeverity": [
             "",
             "unter Belastung (hoher körperliche Anstrengung) stark erhöhte Kurzatmigkeit",
             "in Ruhelage viele Atemzüge",
             "starke Atemnot (Gefühl nicht genug Luft zu bekommen)",
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Lunge",
+        "@Category": "Hauptsymptome",
         "description": "Husten",
         "symptomSeverity": [
             "",
             "schwacher Husten ohne Schmerzen",
             "Husten mit leichten Schmerzen",
             "starker Husten mit Lungenschmerzen",
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Befinden",
+        "@Category": "Hauptsymptome",
         "description": "Muskel- und Gelenkschmerzen",
         "symptomSeverity": [
             "",
             "Muskel- und Gelenkschmerzen",
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Kopf",
-        "description": "Halzschmerzen",
+        "@Category": "Hauptsymptome",
+        "description": "Halsschmerzen",
         "symptomSeverity": [
             "",
             "Halskratzen",
             "Schluckbeschwerden",
             "kaum möglich zu schlucken"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Kopf",
+        "@Category": "Hauptsymptome",
         "description": "Kopfschmerzen",
         "symptomSeverity": [
             "",
             "schubweise",
             "ganzen Tag",
             "beim Aufstehen Schwindelgefühl"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Kopf",
-        "description": "Geschmacks-/Geruchsbeeinträchtigung",
-        "symptomSeverity": [
-            "",
-            "nur Geschmacksbeeinträchtigung",
-            "nur Geruchsbeeinträchtigung",
-            "Geschmacks- und Geruchsbeeinträchtigung"
-        ]
-    },
-    {
-        "@Category": "Magen",
+        "@Category": "Hauptsymptome",
         "description": "Übelkeit/Erbrechen",
         "symptomSeverity": [
             "",
             "nur Übelkeit ohne Erbrechen",
             "einmaliges Erbrechen",
             "mehrmaliges Erbrechen"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Kopf",
+        "@Category": "Weitere Symptome",
+        "description": "Geschmacks-/Geruchsbeeinträchtigung",
+        "symptomSeverity": [
+            "",
+            "nur Geschmacksbeeinträchtigung",
+            "nur Geruchsbeeinträchtigung",
+            "Geschmacks- und Geruchsbeeinträchtigung"
+        ],
+        "toolTip": ""
+    },
+    {
+        "@Category": "Weitere Symptome",
         "description": "Schnupfen",
         "symptomSeverity": [
             "",
             "Nase verstopft",
             "Atembeschwerden durch Schnupfen",
             "Nasennebenhöhlenbeschwerden (Kopfschmerzen/Druckempfinden in Stirnregion) durch Schnupfen"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Magen",
+        "@Category": "Weitere Symptome",
         "description": "Durchfall",
         "symptomSeverity": [
             "",
             "weicher Stuhl (ganztägig)",
             "flüssiger Stuhl (ganztägig)",
             "wässriger Stuhl (ganztägig)"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Befinden",
+        "@Category": "Weitere Symptome",
         "description": "Appetitlosigkeit",
         "symptomSeverity": [
             "",
             "Appetitlosigkeit"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Befinden",
+        "@Category": "Weitere Symptome",
         "description": "Gewichtsverlust",
         "symptomSeverity": [
             "",
             "Gewichtsverlust"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Magen",
+        "@Category": "Weitere Symptome",
         "description": "Bauchschmerzen",
         "symptomSeverity": [
             "",
             "leichte Bauchschmerzen",
             "Bauchkrämpfe",
             "Bauchkrämpfe mit Schmerzhaltung (verkrampftes Liegen etc.)"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Kopf",
+        "@Category": "Weitere Symptome",
         "description": "Bindehautentzündung",
         "symptomSeverity": [
             "",
             "Bindehautentzündung"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Haut",
+        "@Category": "Weitere Symptome",
         "description": "Hautausschlag",
         "symptomSeverity": [
             "",
             "Stellenweise begrenzt",
             "Großflächiger",
             "Flächendeckend am ganzen Körper"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Lymphen",
+        "@Category": "Weitere Symptome",
         "description": "Lymphknotenschwellung",
         "symptomSeverity": [
             "",
             "Lymphknotenschwellung"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Befinden",
+        "@Category": "Weitere Symptome",
         "description": "Teilnahmslosigkeit (Apathie)",
         "symptomSeverity": [
             "",
             "Teilnahmslosigkeit (Apathie)"
-        ]
+        ],
+        "toolTip": ""
     },
     {
-        "@Category": "Befinden",
+        "@Category": "Weitere Symptome",
         "description": "Weitere nicht-aufgelistete Symptome",
         "symptomSeverity": [
             "",
             "Weitere nicht-aufgelistete Symptome"
-        ]
+        ],
+        "toolTip": ""
     },
 ];
 
