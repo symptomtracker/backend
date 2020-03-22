@@ -11,7 +11,8 @@ let catalogueItems = [
             "39,1 - 39,9 °C (hohes Fieber)",
             "> 40,0 °C (sehr hohes Fieber)",
         ],
-        "toolTip": ""
+        "toolTip": "Von Fieber kann gesprochen werden, sobald die eigene Körpertemperatur 38°C überschreitet.\n" +
+            "https://www.stiftung-gesundheitswissen.de/wissen/fieber/hintergrund"
     },
     {
         "@Category": "Hauptsymptome",
@@ -22,7 +23,8 @@ let catalogueItems = [
             "in Ruhelage viele Atemzüge",
             "starke Atemnot (Gefühl nicht genug Luft zu bekommen)",
         ],
-        "toolTip": ""
+        "toolTip": "Insbesondere trockener Husten (bellend-heisere Geräusche) mit  wenig Auswurf.\n" +
+            "https://www.stiftung-gesundheitswissen.de/wissen/husten/hintergrund"
     },
     {
         "@Category": "Hauptsymptome",
@@ -33,7 +35,8 @@ let catalogueItems = [
             "Husten mit leichten Schmerzen",
             "starker Husten mit Lungenschmerzen",
         ],
-        "toolTip": ""
+        "toolTip": "Unangenehme, erschwerte Atemtätigkeit. Zum Testen dieser kann 10sek. die Luft Angehalten werden. Wenn Sie danach ohne Husten und Schnappatmung atmen können leiden Sie an keiner Kurzatmigkeit.\n" +
+            "https://www.apotheken-umschau.de/atemnot"
     },
     {
         "@Category": "Hauptsymptome",
@@ -42,7 +45,8 @@ let catalogueItems = [
             "",
             "Muskel- und Gelenkschmerzen",
         ],
-        "toolTip": ""
+        "toolTip": "Andauernde oder immer wiederkehrende Schmerzen an Muskeln, Sehnen und Gelenken\n" +
+            "https://www.apotheken-umschau.de/gelenkschmerzen"
     },
     {
         "@Category": "Hauptsymptome",
@@ -53,7 +57,8 @@ let catalogueItems = [
             "Schluckbeschwerden",
             "kaum möglich zu schlucken"
         ],
-        "toolTip": ""
+        "toolTip": "Schmerzen die im Bereich des Rachens und des Halses auftreten. Es ist ein unspezifisches Symptom, welches sich auf verschiedene Erkrankungen im Halsbereich zurückführen lässt.\n" +
+            "https://www.apotheken-umschau.de/halsschmerzen\n"
     },
     {
         "@Category": "Hauptsymptome",
@@ -64,7 +69,8 @@ let catalogueItems = [
             "ganzen Tag",
             "beim Aufstehen Schwindelgefühl"
         ],
-        "toolTip": ""
+        "toolTip": "Schmerzen die im Kopfbereich auftreten. Eingeteilt werden diese in primäre (Spannungskopfschmerz, Migräne und Cluster-Kopfschmerz) und sekundäre (aufgrund einer Erkrankung, ein bestimmter Zustand oder die Einnahme einer Substanz). Hier nur bei sekundären ja ankreuzen.\n" +
+            "https://www.apotheken-umschau.de/Kopfschmerzen"
     },
     {
         "@Category": "Hauptsymptome",
@@ -75,7 +81,8 @@ let catalogueItems = [
             "einmaliges Erbrechen",
             "mehrmaliges Erbrechen"
         ],
-        "toolTip": ""
+        "toolTip": "Von Übelkeit ist zu sprechen, wenn einem schlecht ist man sich jedoch nicht übergibt. Von Erbrechen ist die Rede, wenn man sich übergibt.\n" +
+            "https://www.apotheken-umschau.de/uebelkeit-erbrechen"
     },
     {
         "@Category": "Weitere Symptome",
@@ -86,7 +93,8 @@ let catalogueItems = [
             "nur Geruchsbeeinträchtigung",
             "Geschmacks- und Geruchsbeeinträchtigung"
         ],
-        "toolTip": ""
+        "toolTip": "Beeinträchtigung des Geschmacks und/oder Geruchsempfinden.\n" +
+            "https://www.uniklinikum-dresden.de/de/das-klinikum/kliniken-polikliniken-institute/hno/forschung/interdisziplinaeres-zentrum-fuer-riechen-und-schmecken/downloads/downloads/Patienteninformationen_08.pdf"
     },
     {
         "@Category": "Weitere Symptome",
@@ -97,7 +105,8 @@ let catalogueItems = [
             "Atembeschwerden durch Schnupfen",
             "Nasennebenhöhlenbeschwerden (Kopfschmerzen/Druckempfinden in Stirnregion) durch Schnupfen"
         ],
-        "toolTip": ""
+        "toolTip": "Dies ist eine infektiöse Entzündung der Nasenschleimhaut. Schnupfen tritt als Hauptsymptom einer Erkältung bzw. eines grippalen Infekts auf und kann auch bei einer Erkrankung mit Corona auftreten.\n" +
+            "https://www.apotheken-umschau.de/Schnupfen"
     },
     {
         "@Category": "Weitere Symptome",
@@ -108,7 +117,8 @@ let catalogueItems = [
             "flüssiger Stuhl (ganztägig)",
             "wässriger Stuhl (ganztägig)"
         ],
-        "toolTip": ""
+        "toolTip": "Mindestens 3 Stuhlgänge pro Tag mit hohem Wasseranteil.\n" +
+            "https://www.apotheken-umschau.de/Durchfall"
     },
     {
         "@Category": "Weitere Symptome",
@@ -117,7 +127,8 @@ let catalogueItems = [
             "",
             "Appetitlosigkeit"
         ],
-        "toolTip": ""
+        "toolTip": "Beschreibt den Mangel an Hungergefühl.\n" +
+            "https://www.apotheken-umschau.de/appetitlosigkeit"
     },
     {
         "@Category": "Weitere Symptome",
@@ -126,7 +137,8 @@ let catalogueItems = [
             "",
             "Gewichtsverlust"
         ],
-        "toolTip": ""
+        "toolTip": "Ungewollte Gewichtsabnahme unter normalen Umständen.\n" +
+            "https://www.apotheken-umschau.de/gewichtsverlust"
     },
     {
         "@Category": "Weitere Symptome",
@@ -137,7 +149,8 @@ let catalogueItems = [
             "Bauchkrämpfe",
             "Bauchkrämpfe mit Schmerzhaltung (verkrampftes Liegen etc.)"
         ],
-        "toolTip": ""
+        "toolTip": "Schmerzen des Bauchraums die zu starken Krämpfen führen können.\n" +
+            "https://www.apotheken-umschau.de/bauchschmerzen"
     },
     {
         "@Category": "Weitere Symptome",
@@ -146,7 +159,8 @@ let catalogueItems = [
             "",
             "Bindehautentzündung"
         ],
-        "toolTip": ""
+        "toolTip": "Entzündung der Bindehaut des Auges.\n" +
+            "https://www.apotheken-umschau.de/Bindehautentzuendung"
     },
     {
         "@Category": "Weitere Symptome",
@@ -157,7 +171,8 @@ let catalogueItems = [
             "Großflächiger",
             "Flächendeckend am ganzen Körper"
         ],
-        "toolTip": ""
+        "toolTip": "Rötung von bestimmten Hautregionen bis hin zu flächendeckenden Rötungen\n" +
+            "https://www.apotheken-umschau.de/hautausschlag"
     },
     {
         "@Category": "Weitere Symptome",
@@ -166,7 +181,8 @@ let catalogueItems = [
             "",
             "Lymphknotenschwellung"
         ],
-        "toolTip": ""
+        "toolTip": "Angeschwollenes rundliches Organ, welches Lymphozyten bildet und gleichzeitig einen Filter gegenüber Krankheitserregern darstellt. Diese sind am ganzen Körper verteilt.\n" +
+            "https://www.apotheken-umschau.de/Krankheiten/Lymphknotenschwellung-Moegliche-Ursachen-90743.html"
     },
     {
         "@Category": "Weitere Symptome",
@@ -175,7 +191,8 @@ let catalogueItems = [
             "",
             "Teilnahmslosigkeit (Apathie)"
         ],
-        "toolTip": ""
+        "toolTip": "Zustand der Gleichgültigkeit gegenüber dem Menschen und der Umwelt.\n" +
+            "https://www.duden.de/rechtschreibung/Apathie"
     },
     {
         "@Category": "Weitere Symptome",
@@ -184,7 +201,7 @@ let catalogueItems = [
             "",
             "Weitere nicht-aufgelistete Symptome"
         ],
-        "toolTip": ""
+        "toolTip": "Bitte nennen Sie hier weitere Symptome die Ihnen aufgefallen sind.\n"
     },
 ];
 
