@@ -430,7 +430,7 @@
       }
     }
   },
-  "host" : "virtserver.swaggerhub.com",
-  "basePath" : "/alchmi/Symptom_Tracker_Patient_API/1.0.0",
+  "host" : "api.symptomtracker.de",
+  "basePath" : "/1.0.0",
   "schemes" : [ "https", "http" ]
 }
