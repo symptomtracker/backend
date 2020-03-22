@@ -5,6 +5,22 @@ const uri = "mongodb://localhost:27017";
 const client = new MongoClient(uri);
 const connection = client.connect();
 
+Date.prototype.toISOStringWithTimezone = function() {
+    var tzo = -this.getTimezoneOffset(),
+        dif = tzo >= 0 ? '+' : '-',
+        pad = function(num) {
+            var norm = Math.floor(Math.abs(num));
+            return (norm < 10 ? '0' : '') + norm;
+        };
+    return this.getFullYear() +
+        '-' + pad(this.getMonth() + 1) +
+        '-' + pad(this.getDate()) +
+        'T' + pad(this.getHours()) +
+        ':' + pad(this.getMinutes()) +
+        ':' + pad(this.getSeconds()) +
+        dif + pad(tzo / 60) +
+        ':' + pad(tzo % 60);
+}
 
 function group_symptoms_by_desc(all_symptoms) {
     var ret_dict = {};
@@ -42,7 +58,7 @@ exports.update_patient = function (id, patient, callback) {
     connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
-        coll.updateOne({_id: ObjectId(id)}, {$set : patient}, (err, item) => {
+        coll.updateOne({_id: ObjectId(id)}, {$set: patient}, (err, item) => {
             if (err) throw err;
             callback(item);
         });
@@ -81,18 +97,16 @@ exports.add_catalogue_items = function (items) {
     });
 };
 
-exports.add_symptom_values = function (patient_id, symptom_values, callback) {
-    connection.then(() => {
+exports.add_symptom_values = function (patient_id, symptom_values) {
+    for (var s = 0; s < symptom_values.length; s++) {
+        symptom_values[s]["createdAt"] = new Date().toISOStringWithTimezone();
+    }
+    return connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
-        coll.findOne({_id: ObjectId(patient_id)}, function (err, patient) {
-            for (var s = 0; s < symptom_values.length; s++) {
-                symptom_values[s]["createdAt"] = Date.prototype.toISOString();
-            }
+        return coll.findOne({_id: ObjectId(patient_id)}).then((patient) => {
             patient["symptomJourney"] = patient["symptomJourney"].concat(symptom_values);
-            coll.updateOne({id: ObjectId(patient.id)}, patient, function (err, item) {
-                callback();
-            });
+            return coll.updateOne({_id: ObjectId(patient_id)}, {$set: patient});
         });
     });
 };
@@ -101,10 +115,6 @@ exports.get_symptom_values = function (patient_id) {
     return connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
-        return new Promise((resolve, reject) => {
-            coll.findOne({_id: ObjectId(patient_id)}, function (err, patient) {
-                resolve(patient["symptomJourney"]);
-            });
-        });
+        return coll.findOne({_id: ObjectId(patient_id)}).then((patient) => patient["symptomJourney"]);
     })
 };

@@ -46,7 +46,7 @@ exports.patchPatient = function(_id, body) {
     delete body._id; // We have to remove the id during the update as Mongo won't allow us to update the id
     database.update_patient(_id, body, function(result) {
       body._id = _id; // We re-add the id so the client can use it
-      resolve(body)
+      resolve(body);
     });
   });
 };
