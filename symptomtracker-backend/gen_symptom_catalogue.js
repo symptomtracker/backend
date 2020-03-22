@@ -171,11 +171,12 @@ let catalogueItems = [
 ];
 
 function fillDB() {
-    db.truncate_catalogue_items();
-    db.add_catalogue_items(catalogueItems).then((items) => {
-        console.log(items);
-        console.log("SUCCESS");
-    });
+    db.truncate_catalogue_items().then(() => {
+        db.add_catalogue_items(catalogueItems).then((items) => {
+            console.log(items);
+            console.log("SUCCESS");
+        });
+    })
 }
 
 exports.symptomCatalogue = catalogueItems;
