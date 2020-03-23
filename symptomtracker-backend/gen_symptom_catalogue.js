@@ -23,7 +23,7 @@ let catalogueItems = [
             "in Ruhelage viele Atemzüge",
             "starke Atemnot (Gefühl nicht genug Luft zu bekommen)",
         ],
-        "toolTip": "Insbesondere trockener Husten (bellend-heisere Geräusche) mit  wenig Auswurf.",
+        "toolTip": "Unangenehme, erschwerte Atemtätigkeit. Zum Testen dieser kann 10sek. die Luft Angehalten werden. Wenn Sie danach ohne Husten und Schnappatmung atmen können leiden Sie an keiner Kurzatmigkeit.",
         "toolTipLink": "https://www.stiftung-gesundheitswissen.de/wissen/husten/hintergrund"
     },
     {
@@ -35,7 +35,7 @@ let catalogueItems = [
             "Husten mit leichten Schmerzen",
             "starker Husten mit Lungenschmerzen",
         ],
-        "toolTip": "Unangenehme, erschwerte Atemtätigkeit. Zum Testen dieser kann 10sek. die Luft Angehalten werden. Wenn Sie danach ohne Husten und Schnappatmung atmen können leiden Sie an keiner Kurzatmigkeit.",
+        "toolTip": "Insbesondere trockener Husten (bellend-heisere Geräusche) mit  wenig Auswurf.",
         "toolTipLink": "https://www.apotheken-umschau.de/atemnot"
     },
     {
