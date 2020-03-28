@@ -20,17 +20,7 @@ Date.prototype.toISOStringWithTimezone = function () {
         ':' + pad(this.getSeconds()) +
         dif + pad(tzo / 60) +
         ':' + pad(tzo % 60);
-}
-
-function group_symptoms_by_desc(all_symptoms) {
-    var ret_dict = {};
-    for (var i = 0; i < all_symptoms.length; i++) {
-        var symptom_record = all_symptoms[i];
-        var key = symptom_record["@Category"] + symptom_record["description"];
-        ret_dict[key] = symptom_record;
-    }
-    return ret_dict;
-}
+};
 
 
 exports.find_patient_by_id = function (id, callback) {
@@ -38,6 +28,7 @@ exports.find_patient_by_id = function (id, callback) {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
         coll.findOne({_id: ObjectId(id)}, function (err, item) {
+            if (err) throw err;
             callback(item);
         });
     });
@@ -76,7 +67,8 @@ exports.list_all_patients = function (highRisk, inactive, minAge, maxAge, callba
                 $lt: maxAge === undefined ? Number.MAX_VALUE : maxAge
             }
         }).toArray(function (err, items) {
-            return callback(items);
+            if (err) throw err;
+            callback(items);
         });
     });
 };

@@ -8,10 +8,10 @@ host: "api.symptomtracker.de"
 basePath: "/1.0.0"
 tags:
 - name: "patient"
-  description: "Everything regarding a pathient"
+  description: "Everything regarding a patient"
 - name: "symptoms"
   description: "Everything regarding symptoms"
-- name: "questionaire"
+- name: "questionnaire"
   description: "Everything regarding questions"
 schemes:
 - "https"
@@ -141,7 +141,7 @@ paths:
     get:
       tags:
       - "symptoms"
-      summary: "Get Symptoms"
+      summary: "Get all symptom value entries for a specific patient"
       operationId: "getAllSymptoms"
       consumes:
       - "application/json"
@@ -165,7 +165,7 @@ paths:
     put:
       tags:
       - "symptoms"
-      summary: "Add a new"
+      summary: "Add multiple symptoms at once for the given patient"
       operationId: "addNewSymptoms"
       consumes:
       - "application/json"
@@ -193,8 +193,8 @@ paths:
   /catalogue:
     get:
       tags:
-      - "questionaire"
-      summary: "get catalogue questsions"
+      - "questionnaire"
+      summary: "get all questions in catalogue"
       operationId: "getCatalogueItems"
       consumes:
       - "application/json"
@@ -208,11 +208,11 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/SymptomCatalogueItem"
-      x-swagger-router-controller: "Questionaire"
+      x-swagger-router-controller: "Questionnaire"
     put:
       tags:
-      - "questionaire"
-      summary: "Add a new catalogue questsion"
+      - "questionnaire"
+      summary: "Add multiple new catalogue questions at once"
       operationId: "putCatalogueQuestion"
       consumes:
       - "application/json"
@@ -234,7 +234,7 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/SymptomCatalogueItem"
-      x-swagger-router-controller: "Questionaire"
+      x-swagger-router-controller: "Questionnaire"
   /report:
     get:
       tags:
@@ -254,7 +254,7 @@ paths:
     post:
       tags:
       - "message"
-      summary: "send email to list of patients specified by list of id"
+      summary: "send email to list of patients specified by list of ids"
       operationId: "messagePatients"
       consumes:
       - "application/json"
