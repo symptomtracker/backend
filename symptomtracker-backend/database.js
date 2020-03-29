@@ -20,64 +20,44 @@ Date.prototype.toISOStringWithTimezone = function () {
         ':' + pad(this.getSeconds()) +
         dif + pad(tzo / 60) +
         ':' + pad(tzo % 60);
-}
-
-function group_symptoms_by_desc(all_symptoms) {
-    var ret_dict = {};
-    for (var i = 0; i < all_symptoms.length; i++) {
-        var symptom_record = all_symptoms[i];
-        var key = symptom_record["@Category"] + symptom_record["description"];
-        ret_dict[key] = symptom_record;
-    }
-    return ret_dict;
-}
+};
 
 
-exports.find_patient_by_id = function (id, callback) {
-    connection.then(() => {
+exports.find_patient_by_id = function (id) {
+    return connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
-        coll.findOne({_id: ObjectId(id)}, function (err, item) {
-            callback(item);
-        });
+        return coll.findOne({_id: ObjectId(id)});
     });
 };
 
-exports.add_patient = function (patient, callback) {
-    connection.then(() => {
+exports.add_patient = function (patient) {
+    return connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
-        coll.insertOne(patient, (err, item) => {
-            if (err) throw err;
-            callback(item);
-        })
+        return coll.insertOne(patient);
     });
 };
 
-exports.update_patient = function (id, patient, callback) {
-    connection.then(() => {
+exports.update_patient = function (id, patient) {
+    return connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
-        coll.updateOne({_id: ObjectId(id)}, {$set: patient}, (err, item) => {
-            if (err) throw err;
-            callback(item);
-        });
+        return coll.updateOne({_id: ObjectId(id)}, {$set: patient});
     });
 };
 
-exports.list_all_patients = function (highRisk, inactive, minAge, maxAge, callback) {
-    connection.then(() => {
+exports.list_all_patients = function (highRisk, inactive, minAge, maxAge) {
+    return connection.then(() => {
         const db = client.db('symptomTracker');
         const coll = db.collection('patients');
         // TODO @Simon: add inactive & highrisk flags
-        coll.find({
+        return coll.find({
             age: {
                 $gt: minAge === undefined ? 0 : minAge,
                 $lt: maxAge === undefined ? Number.MAX_VALUE : maxAge
             }
-        }).toArray(function (err, items) {
-            return callback(items);
-        });
+        }).toArray();
     });
 };
 
